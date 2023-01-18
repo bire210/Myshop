@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products </title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+
+    <div id="additem">
+        <div class="buttons">
+            <button class="open-button" onclick="openForm()">Add New Item</button>
+            <!-- <button class="openodered">CHECK ORDERED LIST</button> -->
+        </div>
+
+        <div class="form-popup" id="myForm">
+            <form action="" class="form-container">
+                <h1>Fill Details of New Product</h1>
+
+                <label for="psw"><b>Brand</b></label>
+                <input type="text" placeholder="Name" name="name" required>
+
+
+                <label for="image"><b>Image _Url</b></label>
+                <input type="text" placeholder="Image Url" name="image" required>
+
+
+                <label for="product_price"><b>Price</b></label>
+                <input type="number" placeholder="Price" name="price" required>
+
+
+                <label for="title"><b>Description</b></label>
+                <input type="text" placeholder="Description" name="description" required>
+
+                <label for="category"><b>Category</b></label>
+                <input type="text" placeholder="Category" name="category" required>
+                <label for="category"><b>Rating</b></label>
+                <input type="number" step=".01" placeholder="Rating" name="rating" required>
+
+                <!-- <button type="submit" class="btn">Login</button> -->
+                <button type="button" class="btn cancel" onclick="closeForm()">Add</button>
+            </form>
+        </div>
+
+    </div>
+
+
+    
+
+    <div>
+        <h1 id="heading">All Products</h1>
+        <table>
+            <!-- Dont change order of columns -->
+            <thead>
+                <tr>
+
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>Rating</th>
+
+                    <th>Control</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Append your output to tbody -->
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+
+<script>
+    fetch("http://localhost:4500/product", {
+        headers: {
+            "Authorization": localStorage.getItem("token")
+        }
+    }).then((res) => { return (res.json()) }).then((data) => {
+        display(data)
+    }).catch((err) => {
+        console.log(err);
+    })
+
+
+
+    function display(data) {
+        let tbody = document.querySelector("tbody");
+        tbody.innerHTML = "";
+        data.forEach(element => {
+            let row = document.createElement("tr");
+
+            let title = document.createElement("td");
+            title.innerText = element.name;
+            let image = document.createElement("img");
+            image.setAttribute("src", element.image);
+            image.setAttribute("class", "image")
+            let price = document.createElement("td");
+            price.innerText = element.price;
+            let description = document.createElement("td");
+            description.innerText = element.description;
+            let rating = document.createElement("td");
+            rating.innerText = element.rating;
+
+            let control = document.createElement("td");
+            let butDelet = document.createElement("button");
+            butDelet.innerText = "Delete";
+            butDelet.setAttribute("id", "blue");
+            butDelet.addEventListener("click", (eve) => {
+                DeleteNote(element._id)
+            })
+            let butUpdate = document.createElement("button");
+            butUpdate.innerText = "Edit";
+            butUpdate.setAttribute("id", "red");
+            butUpdate.addEventListener("click", () => {
+                localStorage.setItem("element", JSON.stringify(element))
+                window.location.href = "edit.html?id=" + element._id;
+            })
+            control.append(butDelet, butUpdate)
+            row.append(title, image, price, description, rating, control);
+            tbody.append(row)
+
+        });
+    }
+    function DeleteNote(noteId) {
+        //console.log(noteId)
+        event.preventDefault()
+        fetch(`http://localhost:4500/product/delete/${noteId}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": localStorage.getItem("token")
+            }
+        }).then((res) => { return (res.json()) }).then((data) => {
+            // display(data)
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
+
+
+
+
+
+    // ------add product-----
+
+
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+        document.querySelector("table").style.display = "none";
+        document.querySelector("#headDiv").style.display = "none";
+        document.querySelector(".open-button").style.display = "none";
+        document.querySelector("#heading").style.display = "none";
+    }
+let modal=document.getElementById("myForm");
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+        // document.querySelector("table").style.display="block";
+        // document.querySelector("table").style.width="1080"
+
+        //  document.querySelector("#headDiv").style.display="block";
+
+        let ProductData = document.querySelectorAll(".form-container input");
+        let obj = {};
+        
+        obj["name"] = ProductData[1].value;
+        obj["image"] = ProductData[2].value;
+        obj["price"] = ProductData[3].value;
+        obj["description"] = ProductData[4].value;
+        obj["category"] = ProductData[5].value;
+        obj["rating"] = ProductData[5].value;
+
+
+        if (obj["name"] == "" || obj["image"]== "" || obj["price"] == "" || obj["price"] == "" ||
+        obj["description"] == "" || obj["category"] == ""||obj["rating"]=="") {
+            alert("Fill all detail")
+        } else {
+
+            fetch("http://localhost:4500/product/add",{
+       method:"POST",
+       body:JSON.stringify(obj),
+       headers:{
+        "Content-type":"application/json",
+        "Authorization":localStorage.getItem("token")
+       }
+      }).then((res)=>{return(res.json())}).then((data)=>{
+        console.log(data)
+        alert("post has been created");
+        window.location.href="show.html"
+      })
+      .then((error)=>{
+        alert("Failed")
+        console.log(error)
+      })
+        }
+        document.getElementById("myForm").style.display = "none";
+        document.querySelector(".open-button").style.display = "block";
+        location.reload();
+    }
+</script>
