@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="adminlogin.css">
+    <title>Login </title>
+<body>
+     <div>
+    <h1>Login </h1>
+  </div>
+  <div>
+    <form  action="" class="container">
+     
+      <label for="">Email</label>
+      <br>
+      <input type="email" id="email" name="email" placeholder="Put your Email" required>
+      <br>
+     
+      <label for="">Password</label>
+      <br>
+      <input type="password" id="password" name="password" placeholder="make strong password" required>
+      <br>
+      
+      
+      <div class="outer">
+        <input class="button" type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+</body>
+</html>
+<script>
+let formsub=document.querySelector("form")
+  formsub.addEventListener("submit",(event)=>{
+    event.preventDefault()
+    
+    let email=formsub.email.value;
+    let password=formsub.password.value;
+    if(email==""||password==""){
+      alert("Please fill all details")
+    }else{
+      let ob={
+        email,password
+      };
+      console.log(ob)
+      fetch("http://localhost:4500/admin/login",{
+       method:"POST",
+       body:JSON.stringify(ob),
+       headers:{
+        "Content-type":"application/json"
+       }
+      }).then((res)=>{return(res.json())}).then((data)=>{
+        localStorage.setItem("token",data.token)
+        console.log(data.token)
+        alert("Login sucessful");
+        window.location.href="admindashboard.html"
+    })
+      .then((error)=>{
+        console.log(error)
+      })
+    }
+  })    
+
+
+</script>

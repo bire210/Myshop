@@ -1,0 +1,134 @@
+#topfooter{
+ width: 100%;
+ display: flex;
+ justify-content: space-evenly;
+ background-color: aquamarine;
+ height: 100px;
+
+}
+#topfooter .topfoot-content h4 a{
+    
+    text-decoration: none;
+    text-align: center;
+}
+#topfooter .topfoot-content{
+    padding-top: 20px;
+}
+
+#footer{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+#getemail{
+  
+    width:100%;
+      padding:20px;
+  }
+  #emailuperr{
+   
+    display:flex;
+  }
+  .emailchild{
+    padding:5px 0px;
+    width:50%;
+  }
+  .emailchild input[type="email"]{
+    width:60%;
+    font-size:30px;
+  }
+  .emailchild input[type="submit"]{
+    font-size:30px;
+    margin:0px 20px;
+    background:green;
+    color:white;
+  }
+  .hover-underline a:link {
+    text-decoration: none;
+  }
+  
+  .hover-underline a:visited {
+    text-decoration: none;
+  }
+  
+  .hover-underline a:hover {
+    text-decoration: underline;
+  }
+  
+  .hover-underline a:active {
+    text-decoration: underline;
+  }
+  #footer{
+          display: grid;
+          grid-template-columns: repeat(5,1fr);
+         padding:20px 40px;
+  }
+  .footerChild{
+     margin:2px 20px;
+    display:flex;
+    flex-direction:column;
+  }
+  .heading{
+    
+    color: #0087ca;
+  }
+  
+  .hover-underline img{
+    height:20px;
+      margin-top:2px;
+  }
+  
+  #logoOfSocial{
+    display:flex;
+    justify-content:center;
+  }
+  #logoOfSocial img{
+    height:30px;
+  }
+  .socialLog{
+    margin:10px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  /* meidum screens */
+  @media all and (min-width: 768px) and (max-width: 1024px) {
+         #footer{
+          display: grid;
+          grid-template-columns: repeat(3,1fr);
+         padding:40px;
+  }
+    #emailuperr{
+   
+             display:flex;
+            flex-direction:column;
+      }
+          .emailchild{
+    padding:5px 0px;
+    width:100%;
+  }
+        }
+  
+  /* small screens */
+        @media all and (min-width: 220px) and (max-width: 767px) {
+          #footer{
+          display: grid;
+          grid-template-columns: repeat(2,1fr);
+          padding:40px;
+           }
+          #emailuperr{
+   
+             display:flex;
+            flex-direction:column;
+      }
+          .emailchild{
+    padding:5px 0px;
+    width:100%;
+  }
+        }
+  

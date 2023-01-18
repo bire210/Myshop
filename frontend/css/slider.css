@@ -1,0 +1,118 @@
+* {box-sizing: border-box}
+body {font-family: Verdana, sans-serif; margin:0}
+.mySlides {display: none}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width:100%;
+  
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+#category-content{
+    display: flex;
+}
+
+#category-content .category-logo{
+    width: 10%;
+}
+#category-content .category-logo img{
+    width: 100%;
+}
+
+#getdiscount{
+    display: flex;
+    width: 70%;
+    margin:20px auto;
+    justify-content: space-evenly;
+}
+
+#productCategory{
+    width: 90%;
+    margin: 40px auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.prodcat{
+    width: 22%;
+  }
+  .prodcat img{
+    width: 100%;
+  }
+.zoom {
+    transition: transform .01s;
+    margin: 0 auto;
+  }
+  .zoom:hover {
+    -ms-transform: scale(1);
+    transform: scale(1.03); 
+  }
+#dealswheel a{
+    display: inline-block;
+}
+#dealswheel  h4 a{
+    text-decoration: none;
+}
+#dealswheel  button a{
+    text-decoration: none;
+}
+#dealswheel  button{
+    background-color: rgb(233, 245, 215);
+    font-size: 30px;
+    border-radius: 40px;
+    padding: 20px 150px;
+    border: none;
+}
+#dealswheel{
+    border: none;
+    width: 60%;
+    margin: 20px auto;
+    text-align: center;
+}
+#the-beauty{
+    width: 86%;
+    margin: 50px auto;
+}
+#the-beauty img{
+    width: 100%;
+}

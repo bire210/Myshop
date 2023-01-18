@@ -1,0 +1,138 @@
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin: auto;
+    margin-top: 50px;
+    text-align: center;
+  }
+  
+  table td,
+  table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #8caacf;
+  }
+  
+  table tr:hover {
+    background-color: #ddd;
+  }
+  
+  table th {
+    width: 15%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #0468aa;
+    color: white;
+    text-align: center;
+  }
+  
+  #heading{
+  text-align: center;
+  }
+  body {
+    background: linear-gradient(to right, rgb(159, 135, 135), rgb(169, 232, 215), rgb(161, 127, 164));
+  }
+  #navbar{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+  }
+  
+  #blue{
+    background-color: #0468aa;
+    color: aliceblue;
+    height: 100%;
+    font-size: 25px;
+    margin-right:5px;
+  }
+  
+  #red{
+    background-color:red;
+    color: aliceblue;
+    height: 100%;
+    font-size: 25px;
+    margin-left:10px;
+  }
+  #navbar{
+    width: 80%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    text-align: center;
+  }
+
+
+
+/* ---------------------add products------- */
+
+
+.open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    margin-top: 10px;
+    margin-left: 45%;
+   border-radius: 25px;
+  }
+
+ 
+  .form-popup {
+   
+    width: 50%;
+    display: none;
+    margin: 20px auto;
+
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }
+
+ 
+  .form-container {
+    width: 100%;
+    margin: 0px auto;
+    background-color: white;
+  }
+
+  /* Full-width input fields */
+  .form-container input[type=number],
+  .form-container input[type=text] {
+    width: 95%;
+    font-size: 25px;
+    margin: 5px ;
+    border: none;
+    padding: 10px;
+    background: #f1f1f1;
+  }
+
+  .form-container .btn {
+    background-color: #04AA6D;
+    border-radius: 25px;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+  }
+  .openodered{
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    margin-top: 10px;
+    margin-left: 45%;
+
+  }
