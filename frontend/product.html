@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="product.css">
+    <link rel="stylesheet" href="./css/navbar.css">
+    <link rel="stylesheet" href="./css/slider.css">
+    <link rel="stylesheet" href="./product.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="navbar">
+        <div id="logo">
+            <a href="#"><img src="Studio_Project.png" alt=""></a>
+        </div>
+
+        <div id="navcont">
+
+            <div id="tataluxuxry">
+                <div id="Tataleft">
+                    <h5><a href="#">TATA CliQ Luxury</a></h5>
+                </div>
+                <div id="Tatatight">
+                    <h5><a href="#">CliQ Cash</a></h5>
+                    <h5><a href="#">Gift Cards Luxury</a></h5>
+                    <h5><a href="#"> CliQ cares</a></h5>
+                    <h5><a href="#">Track oders</a></h5>
+                    <div class="dropdown">
+
+                        <h5 id="click"><a class="dropbtn" href="#">Sign in /Sign Up</a></h5>
+                        <div class="dropdown-content">
+                            <a id="loginregister" href="#">Login/Register</a>
+                            <a href="#">My Account</a>
+                            <a href="#">Oreder History</a>
+                            <a href="#">My wishlist</a>
+                            <a href="#">Alerts & Coupons</a>
+                            <a href="#">Gift cards</a>
+                            <a href="#">CliQ Cash</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="category">
+
+                <div id="#catdropdown" class="branddropdown">
+                    <div class="catdropdown">
+                        <h3><a href="#">Category</a></h3>
+                    </div>
+                    <div class="dropdown-content-cat">
+                        <a href="#">Women's Fashion</a>
+                        <hr>
+                        <a href="#">Men's Fashion</a>
+                        <hr>
+                        <a href="#">Kid's Fashion</a>
+                        <hr>
+                        <a href="#">Home & Kitchen</a>
+                        <hr>
+                        <a href="#">Beauty</a>
+                        <hr>
+                        <a href="#">Gadgets</a>
+                        <hr>
+                        <a href="#">Jewellery</a>
+                        <hr>
+                        <a href="#">Accessories</a>
+
+                    </div>
+                </div>
+
+                <div id="#branddropdown" class="branddropdown">
+                    <div class="catdropdown">
+                        <h3><a href="#">Brand</a></h3>
+                    </div>
+                    <div class="dropdown-content-cat">
+                        <a href="#">Women's Wear</a>
+                        <hr>
+                        <a href="#">Men's Wear</a>
+                        <hr>
+                        <a href="#">Footwear</a>
+
+                        <hr>
+                        <a href="#">Jewellery</a>
+                        <hr>
+                        <a href="#">Watches & Accessories</a>
+                        <hr>
+                        <a href="#">Kids</a>
+
+                    </div>
+                </div>
+                <div id="search-container">
+                    <form action="">
+                        <input type="text" placeholder="Search.." name="search">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div id="cartwishlist">
+                    <a href="#"> <i class="fa fa-heart-o" style="font-size:40px;color:white"></i></a>
+                    <i class="fa fa-shopping-bag" style="font-size:40px;color:white"></i>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+
+    <Div id="product-conatiner">
+
+        <!-- // i have to append all the product -->
+    </Div>
+</body>
+</html>
+
+<script>
+
+let search_button = document.querySelector("#search-container button");
+    search_button.addEventListener("click", () => {
+        event.preventDefault()
+           
+
+        let searchinput = document.querySelector("#search-container  input").value;
+        console.log(searchinput)
+        fetch(`http://localhost:4500/search?name=${searchinput}`).then((res) => { return (res.json()) }).then((data) => {
+            display(data)
+        }).catch((err) => {
+            console.log(err);
+        })
+
+
+    })
+
+
+fetch("http://localhost:4500/").then((res) => { return (res.json()) }).then((data) => {
+        console.log(data)
+        display(data)
+    }).catch((err) => {
+        console.log(err);
+    })
+
+
+    function display(data){
+        let productContainer=document.querySelector("#product-conatiner");
+        productContainer.innerHTML="";
+
+        data.forEach(element => {
+            let a=document.createElement("a");
+            a.href="#";
+            a.setAttribute("id","cartanchoer")
+            let itemcart=document.createElement("div");
+            itemcart.setAttribute("id","itemcart");
+
+            let image=document.createElement("img");
+            image.src=element.image;
+
+            let name=document.createElement("h3");
+            name.innerText=element.name;
+
+            let description=document.createElement("p");
+            description.innerText=element.description;
+
+            let price=document.createElement("h3");
+            price.innerText="Rs"+":"+element.price;
+            let rating=document.createElement("p");
+            rating.innerText=element.rating;
+
+            itemcart.append(image,name,description,price,rating);
+            a.append(itemcart)
+
+            productContainer.append(a);
+            
+        });
+
+    }
+
+</script>

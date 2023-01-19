@@ -97,7 +97,7 @@ table {
   }
 
  
-  .form-container {
+  .form-container,.edit-form-container {
     width: 100%;
     margin: 0px auto;
     background-color: white;
@@ -105,7 +105,7 @@ table {
 
   /* Full-width input fields */
   .form-container input[type=number],
-  .form-container input[type=text] {
+  .form-container input[type=text],.edit-form-container input[type=number],.edit-form-container input[type=text] {
     width: 95%;
     font-size: 25px;
     margin: 5px ;
@@ -114,7 +114,7 @@ table {
     background: #f1f1f1;
   }
 
-  .form-container .btn {
+  .form-container .btn,.edit-form-container .btn {
     background-color: #04AA6D;
     border-radius: 25px;
     color: white;
@@ -125,14 +125,8 @@ table {
     margin-bottom: 10px;
     opacity: 0.8;
   }
-  .openodered{
-    background-color: #555;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    opacity: 0.8;
-    margin-top: 10px;
-    margin-left: 45%;
-
+ 
+  .image{
+    height: 100px;
+    width: 100%;
   }
