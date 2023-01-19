@@ -7,7 +7,7 @@ const admiauthenticate=(req,res,next)=>{
         if(decode){
             const userID=decode.userID;
             req.body["userID"]=userID;
-           console.log(decode)
+           //console.log(decode)
        next();
         }else{
             res.send("please login")

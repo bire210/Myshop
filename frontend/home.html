@@ -9,6 +9,7 @@
     <title>Online Fashion Lifestyle Shoping</title>
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href="./css/slider.css">
+    <link rel="stylesheet" href="./product.css">
     <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -113,6 +114,9 @@
 
 
     </div>
+
+
+    
     <div id="reg">
         <span class="close">&times;</span>
         <div id="content">
@@ -150,6 +154,10 @@
         <a class="next" onclick="plusSlides(1)">❯</a>
 
     </div>
+    <Div id="product-conatiner">
+
+        <!-- // i have to append all the product -->
+    </Div>
 
     <div id="category-content">
         <div class="category-logo">
@@ -408,7 +416,10 @@
     </div>
 
 
+    <Div id="product-conatiner">
 
+        <!-- // i have to append all the product -->
+    </Div>
 
 
 
@@ -549,5 +560,64 @@
             div.style.display = "none";
         }
     }
+
+    let search_button = document.querySelector("#search-container button");
+    search_button.addEventListener("click", () => {
+        event.preventDefault()
+           document.querySelector(".slideshow-container").style.display="none";
+           document.querySelector("#category-content").style.display="none";
+           document.querySelector("#getdiscount").style.display="none";
+           document.querySelector("#productCategory").style.display="none";
+           document.querySelector("#dealswheel").style.display="none";
+           document.querySelector("#the-beauty").style.display="none";
+           
+           document.querySelector(".category-logo").style.display="none";
+           document.querySelector(".prodcat").style.display="none";
+           document.querySelector(".category-logo").style.display="none";
+
+        let searchinput = document.querySelector("#search-container  input").value;
+        console.log(searchinput)
+        fetch(`http://localhost:4500/search?name=${searchinput}`).then((res) => { return (res.json()) }).then((data) => {
+            display(data)
+        }).catch((err) => {
+            console.log(err);
+        })
+
+
+    })
+    function display(data){
+        let productContainer=document.querySelector("#product-conatiner");
+        productContainer.innerHTML="";
+
+        data.forEach(element => {
+            let a=document.createElement("a");
+            a.href="#";
+            a.setAttribute("id","cartanchoer")
+            let itemcart=document.createElement("div");
+            itemcart.setAttribute("id","itemcart");
+
+            let image=document.createElement("img");
+            image.src=element.image;
+
+            let name=document.createElement("h3");
+            name.innerText=element.name;
+
+            let description=document.createElement("p");
+            description.innerText=element.description;
+
+            let price=document.createElement("h3");
+            price.innerText="Rs"+":"+element.price;
+            let rating=document.createElement("p");
+            rating.innerText=element.rating;
+
+            itemcart.append(image,name,description,price,rating);
+            a.append(itemcart)
+
+            productContainer.append(a);
+            
+        });
+
+    }
+
 
 </script>

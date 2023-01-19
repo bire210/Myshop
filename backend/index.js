@@ -3,17 +3,15 @@ const {connection}=require("./config/db")
 const {AdminRouter}=require("./routes/admin.route");
 const { ProductRouter }=require("./routes/product.route");
 const {admiauthenticate}=require("./midleware/admin.authenticate.midleware")
+const {ProductModel}=require("./models/product.model")
+const {generalRouter}=require("./routes/genral.route");
 require('dotenv').config();
 const cors=require("cors")
 
 const app=express();
 app.use(express.json());
 app.use(cors({origin:"*"}))
-app.get("/",(req,res)=>{
-    res.json("This is home page");
-
-    console.log("Home page");
-})
+app.use("/",generalRouter);
 app.use("/admin",AdminRouter)
 
 app.use("/product",admiauthenticate,ProductRouter)
