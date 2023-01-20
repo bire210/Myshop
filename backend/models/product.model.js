@@ -5,7 +5,6 @@ const productSchma=mongoose.Schema({
     description:String,
     image:String,
     price:Number,
-    cotegory:String,
     rating:Number,
     userID:String
 })

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,10 +13,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Document</title>
 </head>
+
 <body>
     <div id="navbar">
         <div id="logo">
-            <a href="#"><img src="Studio_Project.png" alt=""></a>
+            <a href="./home.html"><img src="Studio_Project.png" alt=""></a>
         </div>
 
         <div id="navcont">
@@ -113,23 +115,45 @@
 
     </div>
 
-    <Div id="product-conatiner">
+    <div id="main-body">
+        <div id="functionality">
+            <form id="form-price-sort" action="">
+                <select onchange="sortFunction()" name="price" id="sort-price">
+                    <option value="">sort by Price</option>
+                    <option value="asc">Low - High</option>
+                    <option value="desc">High - Low</option>
+                </select>
 
-        <!-- // i have to append all the product -->
-    </Div>
+            </form>
+            <form id="form-rating-sort" action="">
+                <select onchange="sortFunction()" name="rating" id="sort-rating">
+                    <option value="">Sort by Rating</option>
+                    <option value="asc">Low - High</option>
+                    <option value="desc">High - Low</option>
+                </select>
+
+            </form>
+
+        </div>
+        <Div id="product-conatiner">
+
+            <!-- // i have to append all the product -->
+        </Div>
+    </div>
 </body>
+
 </html>
 
 <script>
 
-let search_button = document.querySelector("#search-container button");
+    let search_button = document.querySelector("#search-container button");
     search_button.addEventListener("click", () => {
         event.preventDefault()
-           
+
 
         let searchinput = document.querySelector("#search-container  input").value;
         console.log(searchinput)
-        fetch(`http://localhost:4500/search?name=${searchinput}`).then((res) => { return (res.json()) }).then((data) => {
+        fetch(`http://localhost:4500/general/search?name=${searchinput}`).then((res) => { return (res.json()) }).then((data) => {
             display(data)
         }).catch((err) => {
             console.log(err);
@@ -139,7 +163,7 @@ let search_button = document.querySelector("#search-container button");
     })
 
 
-fetch("http://localhost:4500/").then((res) => { return (res.json()) }).then((data) => {
+    fetch("http://localhost:4500/general").then((res) => { return (res.json()) }).then((data) => {
         console.log(data)
         display(data)
     }).catch((err) => {
@@ -147,38 +171,74 @@ fetch("http://localhost:4500/").then((res) => { return (res.json()) }).then((dat
     })
 
 
-    function display(data){
-        let productContainer=document.querySelector("#product-conatiner");
-        productContainer.innerHTML="";
+    function display(data) {
+        let productContainer = document.querySelector("#product-conatiner");
+        productContainer.innerHTML = "";
 
         data.forEach(element => {
-            let a=document.createElement("a");
-            a.href="#";
-            a.setAttribute("id","cartanchoer")
-            let itemcart=document.createElement("div");
-            itemcart.setAttribute("id","itemcart");
+            let a = document.createElement("a");
+            a.href = "singleproduct.html?id"+"="+element._id;
+            a.setAttribute("id", "cartanchoer")
+            let itemcart = document.createElement("div");
+            itemcart.setAttribute("id", "itemcart");
 
-            let image=document.createElement("img");
-            image.src=element.image;
+            let image = document.createElement("img");
+            image.src = element.image;
 
-            let name=document.createElement("h3");
-            name.innerText=element.name;
+            let name = document.createElement("h3");
+            name.innerText = element.name;
 
-            let description=document.createElement("p");
-            description.innerText=element.description;
+            let description = document.createElement("p");
+            description.innerText = element.description;
 
-            let price=document.createElement("h3");
-            price.innerText="Rs"+":"+element.price;
-            let rating=document.createElement("p");
-            rating.innerText=element.rating;
+            let price = document.createElement("h3");
+            price.innerText = "Rs" + ":" + element.price;
+            let rating = document.createElement("p");
+            rating.innerText = element.rating;
 
-            itemcart.append(image,name,description,price,rating);
+            itemcart.append(image, name, description, price, rating);
             a.append(itemcart)
 
             productContainer.append(a);
-            
+
         });
 
     }
+
+    function sortFunction() {
+        let sort_price="",sort_rating=""
+         sort_price = document.getElementById("sort-price").value;
+        sort_rating = document.getElementById("sort-rating").value;
+        //console.log(sort_price,sort_rating)
+        if(sort_price!=""){
+
+            fetch(`http://localhost:4500/general/sort-price?price=${sort_price}`).then((res) => { return (res.json()) }).then((data) => {
+            display(data)
+        }).catch((err) => {
+            console.log(err);
+        })
+
+            
+        }else if(sort_rating!=""){
+            fetch(`http://localhost:4500/general/sort-rating?rating=${sort_rating}`).then((res) => { return (res.json()) }).then((data) => {
+            display(data)
+        }).catch((err) => {
+            console.log(err);
+        })
+
+
+        }else{
+
+            
+    fetch("http://localhost:4500/general/").then((res) => { return (res.json()) }).then((data) => {
+        console.log(data)
+        display(data)
+    }).catch((err) => {
+        console.log(err);
+    })
+        }
+    }
+
+
 
 </script>

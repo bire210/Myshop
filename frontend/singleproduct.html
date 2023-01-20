@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #container {
+      display: flex;
+
+    }
+
+    #pics {
+      width: 10%;
+      margin-left: 10%;
+    }
+
+    #mainpic {
+      margin: 40px;
+      width: 40%;
+
+    }
+
+    #mainpic img {
+      width: 90%;
+      height: 400px;
+    }
+
+    #img1,
+    #img3,
+    #img2 {
+
+      margin-top: 30px;
+      width: 100%;
+      margin-left: 0px;
+    }
+
+    #img1 img,
+    #img2 img,
+    #img3 img {
+      width: 100%;
+
+
+    }
+
+    #deatails {
+
+      width: 30%;
+      padding: 1%;
+      padding-top: 10%;
+    }
+
+    #deatails button {
+      font-size: 30px;
+
+      background-color: goldenrod;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="pics">
+      <div id="img1">
+      </div>
+      <div id="img2">
+      </div>
+      <div id="img3">
+      </div>
+    </div>
+    <div id="mainpic">
+
+    </div>
+    <div id="deatails">
+
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script>
+
+  let params = new URLSearchParams(document.location.search);
+  let id = params.get("id");
+  console.log(id);
+  fetch(`http://localhost:4500/general/${id}`).then((res) => { return (res.json()) }).then((data) => {
+    console.log(data)
+
+    display(data)
+  }).catch((err) => {
+    console.log(err);
+  })
+  function display(data) {
+    let mainpic = document.querySelector("#mainpic");
+    let mainimage = document.createElement("img");
+    mainimage.src = data.image;
+    mainpic.append(mainimage)
+
+    let divforimage1 = document.querySelector("#img1");
+    let image1 = document.createElement("img");
+    image1.src = data.image;
+    divforimage1.append(image1)
+
+
+
+    let divforimage12 = document.querySelector("#img2");
+    let image2 = document.createElement("img");
+    image2.src = data.image;
+    divforimage12.append(image2)
+
+
+    let divforimage13 = document.querySelector("#img3");
+
+    let image3 = document.createElement("img");
+    image3.src = data.image;
+    divforimage13.append(image3)
+
+    let deatails = document.querySelector("#deatails");
+    let titleName = document.createElement("h3");
+    titleName.innerText = "Title : " + data.name;
+    let price = document.createElement("h2");
+    price.innerText = "Price : RS " + data.price;
+    let des = document.createElement("h2");
+    des.innerText = data.description;
+    let Available = document.createElement("h3");
+    Available.innerText = "Avaiblity :" + "availble"
+    let addCart = document.createElement("button");
+    addCart.innerText = "Add to Cart";
+    addCart.addEventListener("click", () => {
+      addcart(data)
+    });
+    
+
+
+    deatails.append(titleName, price, des, Available, addCart)
+
+  }
+
+  function addcart(data) {
+    //console.log(data)
+    const { name, image, description, price, rating } = data;
+    let obj = { name, image, description, price, rating }
+    console.log(obj)
+
+    fetch("http://localhost:4500/usercart/addcart", {
+      method: "POST",
+      body: JSON.stringify(obj),
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": localStorage.getItem("user-token")
+      }
+    }).then((res) => { return (res.json()) }).then((data) => {
+      //console.log(data)
+      alert("Item has been added in the cart");
+      window.location.href = "product.html"
+    }).catch((error) => {
+      alert("Failed")
+      console.log(error)
+    })
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+</script>

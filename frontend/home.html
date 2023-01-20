@@ -56,11 +56,11 @@
                         <h3><a href="#">Category</a></h3>
                     </div>
                     <div class="dropdown-content-cat">
-                        <a href="#">Women's Fashion</a>
+                        <a href="./product.html">Women's Fashion</a>
                         <hr>
-                        <a href="#">Men's Fashion</a>
+                        <a href="./product.html">Men's Fashion</a>
                         <hr>
-                        <a href="#">Kid's Fashion</a>
+                        <a href="./product.html">Kid's Fashion</a>
                         <hr>
                         <a href="#">Home & Kitchen</a>
                         <hr>
@@ -80,9 +80,9 @@
                         <h3><a href="#">Brand</a></h3>
                     </div>
                     <div class="dropdown-content-cat">
-                        <a href="#">Women's Wear</a>
+                        <a href="./product.html">Women's Wear</a>
                         <hr>
-                        <a href="#">Men's Wear</a>
+                        <a href="./product.html">Men's Wear</a>
                         <hr>
                         <a href="#">Footwear</a>
 
@@ -91,7 +91,7 @@
                         <hr>
                         <a href="#">Watches & Accessories</a>
                         <hr>
-                        <a href="#">Kids</a>
+                        <a href="./product.html">Kids</a>
 
                     </div>
                 </div>
@@ -555,11 +555,7 @@
         div.style.display = "none"
     })
 
-    window.onclick = function (event) {
-        if (event.target == div) {
-            div.style.display = "none";
-        }
-    }
+    
 
     let search_button = document.querySelector("#search-container button");
     search_button.addEventListener("click", () => {
@@ -577,7 +573,7 @@
 
         let searchinput = document.querySelector("#search-container  input").value;
         console.log(searchinput)
-        fetch(`http://localhost:4500/search?name=${searchinput}`).then((res) => { return (res.json()) }).then((data) => {
+        fetch(`http://localhost:4500/general/search?name=${searchinput}`).then((res) => { return (res.json()) }).then((data) => {
             display(data)
         }).catch((err) => {
             console.log(err);

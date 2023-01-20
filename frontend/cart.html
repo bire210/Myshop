@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+    <Div id="product-conatiner">
+
+        <!-- // i have to append all the product -->
+    </Div>
+</body>
+</html>
+
+<script>
+     fetch("http://localhost:4500/usercart", {
+        headers: {
+            "Authorization": localStorage.getItem("user-token")
+        }
+    }).then((res) => { return (res.json()) }).then((data) => {
+        display(data)
+    }).catch((err) => {
+        console.log(err);
+    })
+
+
+
+
+
+  function display(data) {
+        let productContainer = document.querySelector("#product-conatiner");
+        productContainer.innerHTML = "";
+
+        data.forEach(element => {
+           
+            let itemcart = document.createElement("div");
+            itemcart.setAttribute("id", "itemcart");
+
+            let image = document.createElement("img");
+            image.src = element.image;
+
+            let name = document.createElement("h3");
+            name.innerText = element.name;
+
+            let description = document.createElement("p");
+            description.innerText = element.description;
+
+            let price = document.createElement("h3");
+            price.innerText = "Rs" + ":" + element.price;
+            let rating = document.createElement("p");
+            rating.innerText = element.rating;
+            let delet=document.createElement("button");
+            delet.innerText="Delete";
+            delet.setAttribute("id","delete");
+            delet.addEventListener("click",()=>{
+                DeleteItem(element)
+            })
+
+
+            itemcart.append(image, name, description, price, rating,delet);
+            
+
+            productContainer.append(itemcart);
+
+        });
+
+    }
+
+function DeleteItem(element){
+    console.log(element)
+
+    event.preventDefault()
+        fetch(`http://localhost:4500/usercart/deletecart/${element._id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": localStorage.getItem("user-token")
+            }
+        }).then((res) => { return (res.json()) }).then((data) => {
+            location.reload();
+        }).catch((err) => {
+            console.log(err);
+        })
+}
+    
+</script>
