@@ -192,7 +192,7 @@
     }
 
     function closeForm(event) {
-        
+
         let ProductData = document.querySelector("form");
         let obj = {};
 
@@ -221,12 +221,12 @@
                 alert("Item has been added");
                 //window.location.href="show.html"
             })
-                .then((error) => {
+                .catch((error) => {
                     alert("Failed")
                     console.log(error)
                 })
 
-                
+
         }
         document.getElementById("myForm").style.display = "none";
         document.querySelector(".open-button").style.display = "block";
@@ -245,33 +245,33 @@
         editform.price.value = element.price;
         editform.des.value = element.description;
         editform.rating.value = element.rating;
-       let update =document.querySelector("#editForm #update");
-       update.addEventListener("click",()=>{
-       let editedData=document.querySelector(".edit-form-container");
-         console.log("data is updated")
-        event.preventDefault()
-        let obj={};
-        obj["name"] = editedData.name.value;
-        obj["image"] = editedData.image.value;
-        obj["price"] = editedData.price.value;
-        obj["description"] = editedData.des.value;
+        let update = document.querySelector("#editForm #update");
+        update.addEventListener("click", () => {
+            let editedData = document.querySelector(".edit-form-container");
+            console.log("data is updated")
+            event.preventDefault()
+            let obj = {};
+            obj["name"] = editedData.name.value;
+            obj["image"] = editedData.image.value;
+            obj["price"] = editedData.price.value;
+            obj["description"] = editedData.des.value;
 
-        obj["rating"] = editedData.rating.value;
-        console.log(element._id)
-        fetch(`http://localhost:4500/product/update/${element._id}`, {
-            method: "PATCH",
-            body: JSON.stringify(obj),
-            headers: {
-                "Content-type": "application/json",
-                "Authorization": localStorage.getItem("token")
-            }
-        }).then((res) => { return (res.json()) }).then((data) => {
-            location.reload();
-        }).catch((err) => {
-            console.log(err);
+            obj["rating"] = editedData.rating.value;
+            console.log(element._id)
+            fetch(`http://localhost:4500/product/update/${element._id}`, {
+                method: "PATCH",
+                body: JSON.stringify(obj),
+                headers: {
+                    "Content-type": "application/json",
+                    "Authorization": localStorage.getItem("token")
+                }
+            }).then((res) => { return (res.json()) }).then((data) => {
+                location.reload();
+            }).catch((err) => {
+                console.log(err);
+            })
+
         })
-
-       })
     }
 
 

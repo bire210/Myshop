@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/register.css">
+    <title>Rgistration</title>
+</head>
+
+<body>
+
+    <div>
+        <h1>Register yourself </h1>
+    </div>
+    <div>
+        <form action="" class="container">
+            <label for="">User name</label>
+            <br>
+            <input type="text" id="name" name="name" placeholder="Enter your full Name" required>
+
+            <br>
+            <label for="">Email</label>
+            <br>
+            <input type="email" id="email" name="email" placeholder="Put your Email" required>
+            <br>
+            <label for="">Mobile number</label>
+            <br>
+            <input type="number" id="mobile" name="mobile" placeholder="Put your mobile" required>
+            <br>
+            <label for="">Password</label>
+            <br>
+            <input type="password" id="password" name="password" placeholder="make strong password" required>
+            <br>
+
+
+            <div class="outer">
+                <input class="button" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
+<script>
+    let formsub = document.querySelector("form")
+    formsub.addEventListener("submit", (event) => {
+        event.preventDefault()
+        let name = formsub.name.value;
+        let email = formsub.email.value;
+        let password = formsub.password.value;
+        let mobile = formsub.mobile.value;
+        if (name == "" || email == "" || password == "" || mobile == "") {
+            alert("Please fill all details")
+        } else {
+            let ob = {
+                name, email, password, mobile
+            };
+            console.log(ob)
+            fetch("http://localhost:4500/user/register", {
+                method: "POST",
+                body: JSON.stringify(ob),
+                headers: {
+                    "Content-type": "application/json"
+                }
+            }).then((res) => { return (res.json()) }).then((data) => {
+                alert("Registeration sucessful");
+                window.location.href = "login.html"
+                console.log(data)
+            })
+                .then((error) => {
+                    console.log(error)
+                })
+        }
+    })
+
+
+</script>
