@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="cart.css">
 </head>
 <body>
+    <div id="heading">
+        <h1 id="totalproduct"></h1>
+          <h1 id="price"></h1>
+          <button id="ordernow">Order Now</button>
+    </div>
     <Div id="product-conatiner">
 
         <!-- // i have to append all the product -->
@@ -33,9 +38,9 @@
   function display(data) {
         let productContainer = document.querySelector("#product-conatiner");
         productContainer.innerHTML = "";
-
+           let totalprice=0,c=data.length;;
         data.forEach(element => {
-           
+            totalprice=totalprice+element.price
             let itemcart = document.createElement("div");
             itemcart.setAttribute("id", "itemcart");
 
@@ -66,7 +71,9 @@
             productContainer.append(itemcart);
 
         });
-
+       document.querySelector("#price").innerText="Total price :"+"Rs. "+totalprice;
+       localStorage.setItem("price",totalprice)
+       document.querySelector("#totalproduct").innerText="Total quantity :"+c;
     }
 
 function DeleteItem(element){
@@ -85,4 +92,10 @@ function DeleteItem(element){
         })
 }
     
+let odersBtn=document.querySelector("#ordernow");
+odersBtn.addEventListener("click",()=>{
+    window.location.href="order.html"
+})
+
+
 </script>

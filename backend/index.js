@@ -8,15 +8,18 @@ const {UserRouter}=require("./routes/user.route")
 const {generalRouter}=require("./routes/genral.route");
 const { orderRouter }=require("./routes/usercart.route")
 require('dotenv').config();
-const cors=require("cors")
+const cors=require("cors");
+const { get } = require("mongoose");
 
 const app=express();
 app.use(express.json());
 app.use(cors({origin:"*"}))
-
+app.get("/",(req,res)=>{
+    res.send("this is home page")
+})
 app.use("/admin",AdminRouter)
 app.use("/general",generalRouter);
-app.use("/product",admiauthenticate,ProductRouter)
+app.use("/admintask",admiauthenticate,ProductRouter)
 app.use("/user",UserRouter);
 app.use("/usercart",userauthenticate,orderRouter)
 
@@ -27,7 +30,7 @@ app.listen(process.env.port,async()=>{
         console.log("data base is connected")
     } catch (error) {
         console.log("Database is not connected")
-        console.Console.log(error);
+        console.console.log(error);
     }
     console.log(`server is running over ${process.env.port}`)
 })

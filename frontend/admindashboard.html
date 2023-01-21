@@ -15,7 +15,8 @@
     <div id="additem">
         <div class="buttons">
             <button class="open-button" onclick="openForm()">Add New Item</button>
-            <!-- <button class="openodered">CHECK ORDERED LIST</button> -->
+            <a class="openodered" href="getorderitem.html">CHECK ORDERED LIST</a>
+            <button class="openuser">All users list</button>
         </div>
 
         <div class="form-popup" id="myForm">
@@ -108,7 +109,10 @@
 </html>
 
 <script>
-    fetch("http://localhost:4500/product", {
+
+
+
+    fetch("http://localhost:4500/admintask", {
         headers: {
             "Authorization": localStorage.getItem("token")
         }
@@ -157,10 +161,12 @@
 
         });
     }
+
+
     function DeleteNote(noteId) {
         //console.log(noteId)
         event.preventDefault()
-        fetch(`http://localhost:4500/product/delete/${noteId}`, {
+        fetch(`http://localhost:4500/admintask/delete/${noteId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": localStorage.getItem("token")
@@ -209,7 +215,7 @@
             alert("Fill all detail")
         } else {
 
-            fetch("http://localhost:4500/product/add", {
+            fetch("http://localhost:4500/admintask/add", {
                 method: "POST",
                 body: JSON.stringify(obj),
                 headers: {
@@ -258,7 +264,7 @@
 
             obj["rating"] = editedData.rating.value;
             console.log(element._id)
-            fetch(`http://localhost:4500/product/update/${element._id}`, {
+            fetch(`http://localhost:4500/admintask/update/${element._id}`, {
                 method: "PATCH",
                 body: JSON.stringify(obj),
                 headers: {

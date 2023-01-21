@@ -73,7 +73,7 @@ table {
 /* ---------------------add products------- */
 
 
-.open-button {
+.open-button ,.openodered,.openuser {
     background-color: #555;
     color: white;
     padding: 16px 20px;
@@ -81,10 +81,12 @@ table {
     cursor: pointer;
     opacity: 0.8;
     margin-top: 10px;
-    margin-left: 45%;
+    margin-left: 15%;
    border-radius: 25px;
   }
-
+  .openodered{
+    text-decoration: none;
+  }
  
   .form-popup {
    
@@ -129,4 +131,9 @@ table {
   .image{
     height: 100px;
     width: 100%;
+  }
+
+  #buttons{
+    display: flex;
+    justify-content: center;
   }

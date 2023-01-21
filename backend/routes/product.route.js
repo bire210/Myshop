@@ -1,11 +1,33 @@
 const express = require("express");
 const { ProductModel } = require("../models/product.model")
+const {UserModel}=require("../models/user.model");
+const {oderProductModel}=require("../models/oreder.product.model")
 const ProductRouter = express.Router();
 
 ProductRouter.get("/", async (req, res) => {
     //veryfication need
     try {
         const posts = await ProductModel.find();
+        res.json(posts)
+    } catch (error) {
+        console.log(error)
+        res.json("Somthing is wrong")
+    }
+})
+ProductRouter.get("/getuser", async (req, res) => {
+    //veryfication need
+    try {
+        const posts = await UserModel.find();
+        res.json(posts)
+    } catch (error) {
+        console.log(error)
+        res.json("Somthing is wrong")
+    }
+})
+ProductRouter.get("/getorderitem", async (req, res) => {
+    //veryfication need
+    try {
+        const posts = await oderProductModel.find();
         res.json(posts)
     } catch (error) {
         console.log(error)

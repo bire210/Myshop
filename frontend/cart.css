@@ -16,3 +16,21 @@
     width: 100%;
     height: 300px;
 }
+#heading{
+    width: 80%;
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-between;
+}
+#ordernow{
+    background-color: yellowgreen;
+    width: 200px;
+    height: 50px;
+    margin-top: 20px;
+    font-size: 30px;
+    border: none;
+    border-radius: 25px;
+}
+#ordernow:hover{
+    cursor: pointer;
+}

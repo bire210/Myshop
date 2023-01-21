@@ -38,7 +38,7 @@ UserRouter.post("/register", async (req, res) => {
 UserRouter.post("/login", async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
-    console.log(req.body)
+    //console.log(req.body)
     try {
         const data = await UserModel.find({ email });
         const has_pass = data[0].password;
@@ -49,7 +49,7 @@ UserRouter.post("/login", async (req, res) => {
                 if (result) {
                     const token = jwt.sign({ userID: data[0]._id },process.env.key);
                   
-                    res.json({ "msg": "login sucess", "token": token });
+                    res.json({ "msg": "login sucess", "token": token,"user":data[0] });
                     
                 } else {
                     res.json("Wrong Credentials")
