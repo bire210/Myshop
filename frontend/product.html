@@ -103,7 +103,7 @@
                 </div>
                 <div id="cartwishlist">
                     <a href="#"> <i class="fa fa-heart-o" style="font-size:40px;color:white"></i></a>
-                    <i class="fa fa-shopping-bag" style="font-size:40px;color:white"></i>
+                    <a > <i id="bag" class="fa fa-shopping-bag" style="font-size:40px;color:white"></i></a>
                 </div>
             </div>
         </div>
@@ -145,6 +145,32 @@
 </html>
 
 <script>
+   let username = localStorage.getItem("username");
+    if (username != "") {
+        let tar = document.querySelector("#click .dropbtn").innerText = username;
+        let reg = document.querySelector("#loginregister");
+        reg.innerText = "Log Out";
+        reg.addEventListener("click", () => {
+            localStorage.setItem("user-token", "");
+            localStorage.setItem("username", "");
+        })
+
+        console.log(reg)
+    } else {
+        let reg= document.querySelector("#loginregister");
+        reg.addEventListener("click",()=>{
+            window.location.href="login.html"
+        })
+    }
+    let bag=document.querySelector("#cartwishlist #bag");
+  bag.addEventListener("click",()=>{
+    if(username!=""){
+        window.location.href="cart.html"
+    }else{
+        alert("Login Please");
+        window.location.href="login.html"
+    }
+  })
 
     let search_button = document.querySelector("#search-container button");
     search_button.addEventListener("click", () => {
@@ -238,6 +264,7 @@
     })
         }
     }
+
 
 
 

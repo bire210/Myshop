@@ -52,8 +52,10 @@ let formsub=document.querySelector("form")
         "Content-type":"application/json"
        }
       }).then((res)=>{return(res.json())}).then((data)=>{
-        localStorage.setItem("user-token",data.token)
-        console.log(data.token)
+        localStorage.setItem("user-token",data.token);
+        let user=data.user;
+        localStorage.setItem("username",user.name)
+        //console.log(data)
         alert("Login sucessful");
         window.location.href="home.html"
     })

@@ -35,7 +35,7 @@
 
                         <h5 id="click"><a class="dropbtn" href="#">Sign in /Sign Up</a></h5>
                         <div class="dropdown-content">
-                            <a id="loginregister" href="#">Login/Register</a>
+                            <button id="loginregister">Login/Register</button>
                             <a href="#">My Account</a>
                             <a href="#">Oreder History</a>
                             <a href="#">My wishlist</a>
@@ -103,7 +103,7 @@
                 </div>
                 <div id="cartwishlist">
                     <a href="#"> <i class="fa fa-heart-o" style="font-size:40px;color:white"></i></a>
-                    <i class="fa fa-shopping-bag" style="font-size:40px;color:white"></i>
+                    <a > <i id="bag" class="fa fa-shopping-bag" style="font-size:40px;color:white"></i></a>
                 </div>
             </div>
         </div>
@@ -116,20 +116,8 @@
     </div>
 
 
-    
-    <div id="reg">
-        <span class="close">&times;</span>
-        <div id="content">
-            <h1>Welcome to Tata CLiQ</h1>
-            <h3>Please enter your Email</h3>
 
-            <input type="email" name="mobileNumber" placeholder="Enter Your Email address" id="mobileNumber" value="">
-            <div class="mobile-number-login__signUpTxt">By continuing, you agree to our <a href="/terms-of-use"
-                    class="term">Terms of Use</a> and <a href="/privacy-policy"
-                    class="mobile-number-login__btnLink">Privacy Policy</a></div>
-            <button type="button" id="continueBtn">Continue</button>
-        </div>
-    </div>
+   
     <div class="slideshow-container">
 
         <div class="mySlides fade">
@@ -517,8 +505,35 @@
 
 
 <script>
+    let username = localStorage.getItem("username");
+    if (username != "") {
+        let tar = document.querySelector("#click .dropbtn").innerText = username;
+        let reg = document.querySelector("#loginregister");
+        reg.innerText = "Log Out";
+        reg.addEventListener("click", () => {
+            localStorage.setItem("user-token", "");
+            localStorage.setItem("username", "");
+            window.location.href="home.html"
+        })
 
+        console.log(reg)
+    } else {
+        let reg= document.querySelector("#loginregister");
+        reg.addEventListener("click",()=>{
+            window.location.href="login.html"
+        })
+    }
 
+  let bag=document.querySelector("#cartwishlist #bag");
+  bag.addEventListener("click",()=>{
+    if(username!=""){
+        window.location.href="cart.html"
+    }else{
+        alert("Login Please");
+        window.location.href="login.html"
+    }
+  })
+ // console.log(bag)
     let slideIndex = 1;
     showSlides(slideIndex);
 
@@ -551,28 +566,26 @@
     button.addEventListener("click", () => {
         div.style.display = "block";
     })
-    span.addEventListener("click", () => {
-        div.style.display = "none"
-    })
 
-    
+
+
 
     let search_button = document.querySelector("#search-container button");
     search_button.addEventListener("click", () => {
         event.preventDefault()
-           document.querySelector(".slideshow-container").style.display="none";
-           document.querySelector("#category-content").style.display="none";
-           document.querySelector("#getdiscount").style.display="none";
-           document.querySelector("#productCategory").style.display="none";
-           document.querySelector("#dealswheel").style.display="none";
-           document.querySelector("#the-beauty").style.display="none";
-           
-           document.querySelector(".category-logo").style.display="none";
-           document.querySelector(".prodcat").style.display="none";
-           document.querySelector(".category-logo").style.display="none";
+        document.querySelector(".slideshow-container").style.display = "none";
+        document.querySelector("#category-content").style.display = "none";
+        document.querySelector("#getdiscount").style.display = "none";
+        document.querySelector("#productCategory").style.display = "none";
+        document.querySelector("#dealswheel").style.display = "none";
+        document.querySelector("#the-beauty").style.display = "none";
+
+        document.querySelector(".category-logo").style.display = "none";
+        document.querySelector(".prodcat").style.display = "none";
+        document.querySelector(".category-logo").style.display = "none";
 
         let searchinput = document.querySelector("#search-container  input").value;
-        console.log(searchinput)
+        // console.log(searchinput)
         fetch(`http://localhost:4500/general/search?name=${searchinput}`).then((res) => { return (res.json()) }).then((data) => {
             display(data)
         }).catch((err) => {
@@ -581,39 +594,40 @@
 
 
     })
-    function display(data){
-        let productContainer=document.querySelector("#product-conatiner");
-        productContainer.innerHTML="";
+    function display(data) {
+        let productContainer = document.querySelector("#product-conatiner");
+        productContainer.innerHTML = "";
 
         data.forEach(element => {
-            let a=document.createElement("a");
-            a.href="#";
-            a.setAttribute("id","cartanchoer")
-            let itemcart=document.createElement("div");
-            itemcart.setAttribute("id","itemcart");
+            let a = document.createElement("a");
+            a.href = "#";
+            a.setAttribute("id", "cartanchoer")
+            let itemcart = document.createElement("div");
+            itemcart.setAttribute("id", "itemcart");
 
-            let image=document.createElement("img");
-            image.src=element.image;
+            let image = document.createElement("img");
+            image.src = element.image;
 
-            let name=document.createElement("h3");
-            name.innerText=element.name;
+            let name = document.createElement("h3");
+            name.innerText = element.name;
 
-            let description=document.createElement("p");
-            description.innerText=element.description;
+            let description = document.createElement("p");
+            description.innerText = element.description;
 
-            let price=document.createElement("h3");
-            price.innerText="Rs"+":"+element.price;
-            let rating=document.createElement("p");
-            rating.innerText=element.rating;
+            let price = document.createElement("h3");
+            price.innerText = "Rs" + ":" + element.price;
+            let rating = document.createElement("p");
+            rating.innerText = element.rating;
 
-            itemcart.append(image,name,description,price,rating);
+            itemcart.append(image, name, description, price, rating);
             a.append(itemcart)
 
             productContainer.append(a);
-            
+
         });
 
     }
+
 
 
 </script>

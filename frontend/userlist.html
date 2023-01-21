@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All order Products </title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div id="product-div">
+        <h1 id="heading">All Order</h1>
+        <table>
+            <!-- Dont change order of columns -->
+            <thead>
+                <tr>
+
+                    <th>Name/th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    
+                    <th>User ID</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Append your output to tbody -->
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+<script>
+
+fetch("http://localhost:4500/admintask/getuser", {
+        headers: {
+            "Authorization": localStorage.getItem("token")
+        }
+    }).then((res) => { return (res.json()) }).then((data) => {
+        display(data)
+    }).catch((err) => {
+        console.log(err);
+    })
+
+
+
+    
+    function display(data) {
+       
+        let tbody = document.querySelector("tbody");
+        tbody.innerHTML = "";
+        data.forEach(element => {
+           
+            let row = document.createElement("tr");
+
+            let title = document.createElement("td");
+            title.innerText = element.name;
+            let price = document.createElement("td");
+            price.innerText = element.email;
+            let description = document.createElement("td");
+            description.innerText = element.mobile;
+            let id = document.createElement("td");
+            id.innerText = element._id;
+           
+            row.append(title,  price, description,id);
+            tbody.append(row)
+
+        });
+    }
+</script>
