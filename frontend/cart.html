@@ -21,7 +21,7 @@
 </html>
 
 <script>
-     fetch("http://localhost:4500/usercart", {
+     fetch("https://wandering-pig-snaps.cyclic.app/usercart", {
         headers: {
             "Authorization": localStorage.getItem("user-token")
         }
@@ -80,7 +80,7 @@ function DeleteItem(element){
     console.log(element)
 
     event.preventDefault()
-        fetch(`http://localhost:4500/usercart/deletecart/${element._id}`, {
+        fetch(`https://wandering-pig-snaps.cyclic.app/usercart/deletecart/${element._id}`, {
             method: "DELETE",
             headers: {
                 "Authorization": localStorage.getItem("user-token")

@@ -179,7 +179,7 @@
 
         let searchinput = document.querySelector("#search-container  input").value;
         console.log(searchinput)
-        fetch(`http://localhost:4500/general/search?name=${searchinput}`).then((res) => { return (res.json()) }).then((data) => {
+        fetch(`https://wandering-pig-snaps.cyclic.app/general/search?name=${searchinput}`).then((res) => { return (res.json()) }).then((data) => {
             display(data)
         }).catch((err) => {
             console.log(err);
@@ -189,7 +189,7 @@
     })
 
 
-    fetch("http://localhost:4500/general").then((res) => { return (res.json()) }).then((data) => {
+    fetch("https://wandering-pig-snaps.cyclic.app/general").then((res) => { return (res.json()) }).then((data) => {
         console.log(data)
         display(data)
     }).catch((err) => {
@@ -238,7 +238,7 @@
         //console.log(sort_price,sort_rating)
         if(sort_price!=""){
 
-            fetch(`http://localhost:4500/general/sort-price?price=${sort_price}`).then((res) => { return (res.json()) }).then((data) => {
+            fetch(`https://wandering-pig-snaps.cyclic.app/general/sort-price?price=${sort_price}`).then((res) => { return (res.json()) }).then((data) => {
             display(data)
         }).catch((err) => {
             console.log(err);
@@ -246,7 +246,7 @@
 
             
         }else if(sort_rating!=""){
-            fetch(`http://localhost:4500/general/sort-rating?rating=${sort_rating}`).then((res) => { return (res.json()) }).then((data) => {
+            fetch(`https://wandering-pig-snaps.cyclic.app/general/sort-rating?rating=${sort_rating}`).then((res) => { return (res.json()) }).then((data) => {
             display(data)
         }).catch((err) => {
             console.log(err);
@@ -256,7 +256,7 @@
         }else{
 
             
-    fetch("http://localhost:4500/general/").then((res) => { return (res.json()) }).then((data) => {
+    fetch("https://wandering-pig-snaps.cyclic.app/general/").then((res) => { return (res.json()) }).then((data) => {
         console.log(data)
         display(data)
     }).catch((err) => {

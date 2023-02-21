@@ -112,7 +112,7 @@
 
 
 
-    fetch("http://localhost:4500/admintask", {
+    fetch("https://wandering-pig-snaps.cyclic.app/admintask", {
         headers: {
             "Authorization": localStorage.getItem("token")
         }
@@ -166,7 +166,7 @@
     function DeleteNote(noteId) {
         //console.log(noteId)
         event.preventDefault()
-        fetch(`http://localhost:4500/admintask/delete/${noteId}`, {
+        fetch(`https://wandering-pig-snaps.cyclic.app/admintask/delete/${noteId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": localStorage.getItem("token")
@@ -215,7 +215,7 @@
             alert("Fill all detail")
         } else {
 
-            fetch("http://localhost:4500/admintask/add", {
+            fetch("https://wandering-pig-snaps.cyclic.app/admintask/add", {
                 method: "POST",
                 body: JSON.stringify(obj),
                 headers: {
@@ -264,7 +264,7 @@
 
             obj["rating"] = editedData.rating.value;
             console.log(element._id)
-            fetch(`http://localhost:4500/admintask/update/${element._id}`, {
+            fetch(`https://wandering-pig-snaps.cyclic.app/admintask/update/${element._id}`, {
                 method: "PATCH",
                 body: JSON.stringify(obj),
                 headers: {

@@ -86,7 +86,7 @@
   let params = new URLSearchParams(document.location.search);
   let id = params.get("id");
   console.log(id);
-  fetch(`http://localhost:4500/general/${id}`).then((res) => { return (res.json()) }).then((data) => {
+  fetch(`https://wandering-pig-snaps.cyclic.app/general/${id}`).then((res) => { return (res.json()) }).then((data) => {
     console.log(data)
 
     display(data)
@@ -145,7 +145,7 @@
     let obj = { name, image, description, price, rating }
     console.log(obj)
 
-    fetch("http://localhost:4500/usercart/addcart", {
+    fetch("https://wandering-pig-snaps.cyclic.app/usercart/addcart", {
       method: "POST",
       body: JSON.stringify(obj),
       headers: {

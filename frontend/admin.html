@@ -45,7 +45,7 @@ let formsub=document.querySelector("form")
         email,password
       };
       console.log(ob)
-      fetch("http://localhost:4500/admin/login",{
+      fetch("https://wandering-pig-snaps.cyclic.app/admin/login",{
        method:"POST",
        body:JSON.stringify(ob),
        headers:{

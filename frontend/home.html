@@ -586,7 +586,7 @@
 
         let searchinput = document.querySelector("#search-container  input").value;
         // console.log(searchinput)
-        fetch(`http://localhost:4500/general/search?name=${searchinput}`).then((res) => { return (res.json()) }).then((data) => {
+        fetch(`https://wandering-pig-snaps.cyclic.app/general/search?name=${searchinput}`).then((res) => { return (res.json()) }).then((data) => {
             display(data)
         }).catch((err) => {
             console.log(err);
