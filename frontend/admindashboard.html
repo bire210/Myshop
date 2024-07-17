@@ -1,284 +1,312 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Products</title>
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Products </title>
-    <link rel="stylesheet" href="dashboard.css">
-</head>
-
-<body>
-
-
+  <body>
     <div id="additem">
-        <div class="buttons">
-            <button class="open-button" onclick="openForm()">Add New Item</button>
-            <a class="openodered" href="getorderitem.html">CHECK ORDERED LIST</a>
-            <a class="openuser" href="userlist.html">All users list</a>
-        </div>
+      <div class="buttons">
+        <button class="open-button" onclick="openForm()">Add New Item</button>
+        <a class="openodered" href="getorderitem.html">CHECK ORDERED LIST</a>
+        <a class="openuser" href="userlist.html">All users list</a>
+      </div>
 
-        <div class="form-popup" id="myForm">
-            <form action="" class="form-container">
-                <h1>Fill Details of New Product</h1>
+      <div class="form-popup" id="myForm">
+        <form action="" class="form-container">
+          <h1>Fill Details of New Product</h1>
 
-                <label for="psw"><b>Brand</b></label>
-                <input type="text" placeholder="Name" name="name" id="Name" required>
+          <label for="psw"><b>Brand</b></label>
+          <input
+            type="text"
+            placeholder="Name"
+            name="name"
+            id="Name"
+            required
+          />
 
+          <label for="image"><b>Image _Url</b></label>
+          <input
+            type="text"
+            placeholder="Image Url"
+            name="image"
+            id="image"
+            required
+          />
 
-                <label for="image"><b>Image _Url</b></label>
-                <input type="text" placeholder="Image Url" name="image" id="image" required>
+          <label for="product_price"><b>Price</b></label>
+          <input
+            type="number"
+            placeholder="Price"
+            name="price"
+            id="price"
+            required
+          />
 
+          <label for="title"><b>Description</b></label>
+          <input
+            type="text"
+            placeholder="Description"
+            name="description"
+            id="des"
+            required
+          />
 
-                <label for="product_price"><b>Price</b></label>
-                <input type="number" placeholder="Price" name="price" id="price" required>
+          <label for="category"><b>Rating</b></label>
+          <input
+            type="number"
+            step=".01"
+            placeholder="Rating"
+            name="rating"
+            id="rating"
+            required
+          />
 
+          <!-- <button type="submit" class="btn">Login</button> -->
+          <button type="button" class="btn cancel" onclick="closeForm()">
+            Add
+          </button>
+        </form>
+      </div>
 
-                <label for="title"><b>Description</b></label>
-                <input type="text" placeholder="Description" name="description" id="des" required>
+      <!-- edit data form---------- -->
+      <div class="form-popup" id="editForm">
+        <form action="" class="edit-form-container">
+          <h1>Update the data</h1>
 
+          <label for="psw"><b>Brand</b></label>
+          <input type="text" name="name" id="Name" required />
 
-                <label for="category"><b>Rating</b></label>
-                <input type="number" step=".01" placeholder="Rating" name="rating" id="rating" required>
+          <label for="image"><b>Image _Url</b></label>
+          <input type="text" Url" name="image" id="image" required>
 
-                <!-- <button type="submit" class="btn">Login</button> -->
-                <button type="button" class="btn cancel" onclick="closeForm()">Add</button>
-            </form>
-        </div>
+          <label for="product_price"><b>Price</b></label>
+          <input type="number" name="price" id="price" required />
 
+          <label for="title"><b>Description</b></label>
+          <input type="text" name="description" id="des" required />
 
-        <!-- edit data form---------- -->
-        <div class="form-popup" id="editForm">
-            <form action="" class="edit-form-container">
-                <h1>Update the data</h1>
+          <label for="category"><b>Rating</b></label>
+          <input type="number" step=".01" name="rating" id="rating" required />
 
-                <label for="psw"><b>Brand</b></label>
-                <input type="text" name="name" id="Name" required>
-
-
-                <label for="image"><b>Image _Url</b></label>
-                <input type="text" Url" name="image" id="image" required>
-
-
-                <label for="product_price"><b>Price</b></label>
-                <input type="number" name="price" id="price" required>
-
-
-                <label for="title"><b>Description</b></label>
-                <input type="text" name="description" id="des" required>
-
-
-                <label for="category"><b>Rating</b></label>
-                <input type="number" step=".01" name="rating" id="rating" required>
-
-                <!-- <button type="submit" class="btn">Login</button> -->
-                <button type="button" class="btn cancel" id="update">Update</button>
-            </form>
-        </div>
-
+          <!-- <button type="submit" class="btn">Login</button> -->
+          <button type="button" class="btn cancel" id="update">Update</button>
+        </form>
+      </div>
     </div>
-
-
-
 
     <div id="product-div">
-        <h1 id="heading">All Products</h1>
-        <table>
-            <!-- Dont change order of columns -->
-            <thead>
-                <tr>
+      <h1 id="heading">All Products</h1>
+      <table>
+        <!-- Dont change order of columns -->
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Rating</th>
 
-                    <th>Title</th>
-                    <th>Image</th>
-                    <th>Price</th>
-                    <th>Description</th>
-                    <th>Rating</th>
-
-                    <th>Control</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Append your output to tbody -->
-
-            </tbody>
-        </table>
+            <th>Control</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Append your output to tbody -->
+        </tbody>
+      </table>
     </div>
-</body>
-
+  </body>
 </html>
 
 <script>
-
-
-
-    fetch("https://wandering-pig-snaps.cyclic.app/admintask", {
-        headers: {
-            "Authorization": localStorage.getItem("token")
-        }
-    }).then((res) => { return (res.json()) }).then((data) => {
-        display(data)
-    }).catch((err) => {
-        console.log(err);
+  fetch("https://myshop-backend-u9km.onrender.com/admintask", {
+    headers: {
+      Authorization: localStorage.getItem("token"),
+    },
+  })
+    .then((res) => {
+      return res.json();
     })
+    .then((data) => {
+      display(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
+  function display(data) {
+    let tbody = document.querySelector("tbody");
+    tbody.innerHTML = "";
+    data.forEach((element) => {
+      let row = document.createElement("tr");
 
+      let title = document.createElement("td");
+      title.innerText = element.name;
+      let image = document.createElement("img");
+      image.setAttribute("src", element.image);
+      image.setAttribute("class", "image");
+      let price = document.createElement("td");
+      price.innerText = element.price;
+      let description = document.createElement("td");
+      description.innerText = element.description;
+      let rating = document.createElement("td");
+      rating.innerText = element.rating;
 
-    function display(data) {
-        let tbody = document.querySelector("tbody");
-        tbody.innerHTML = "";
-        data.forEach(element => {
-            let row = document.createElement("tr");
+      let control = document.createElement("td");
+      let butDelet = document.createElement("button");
+      butDelet.innerText = "Delete";
+      butDelet.setAttribute("id", "blue");
+      butDelet.addEventListener("click", (eve) => {
+        DeleteNote(element._id);
+      });
+      let butUpdate = document.createElement("button");
+      butUpdate.innerText = "Edit";
+      butUpdate.setAttribute("id", "red");
+      butUpdate.addEventListener("click", () => {
+        editData(element);
+      });
+      control.append(butDelet, butUpdate);
+      row.append(title, image, price, description, rating, control);
+      tbody.append(row);
+    });
+  }
 
-            let title = document.createElement("td");
-            title.innerText = element.name;
-            let image = document.createElement("img");
-            image.setAttribute("src", element.image);
-            image.setAttribute("class", "image")
-            let price = document.createElement("td");
-            price.innerText = element.price;
-            let description = document.createElement("td");
-            description.innerText = element.description;
-            let rating = document.createElement("td");
-            rating.innerText = element.rating;
+  function DeleteNote(noteId) {
+    //console.log(noteId)
+    event.preventDefault();
+    fetch(
+      `https://myshop-backend-u9km.onrender.com/admintask/delete/${noteId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
-            let control = document.createElement("td");
-            let butDelet = document.createElement("button");
-            butDelet.innerText = "Delete";
-            butDelet.setAttribute("id", "blue");
-            butDelet.addEventListener("click", (eve) => {
-                DeleteNote(element._id)
-            })
-            let butUpdate = document.createElement("button");
-            butUpdate.innerText = "Edit";
-            butUpdate.setAttribute("id", "red");
-            butUpdate.addEventListener("click", () => {
-                editData(element);
-            })
-            control.append(butDelet, butUpdate)
-            row.append(title, image, price, description, rating, control);
-            tbody.append(row)
+  // ------add product-----
 
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+    document.getElementById("product-div").style.display = "none";
+    document.querySelector(".buttons").style.display = "none";
+  }
+  let modal = document.getElementById("myForm");
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  function closeForm(event) {
+    let ProductData = document.querySelector("form");
+    let obj = {};
+
+    obj["name"] = ProductData.name.value;
+    obj["image"] = ProductData.image.value;
+    obj["price"] = ProductData.price.value;
+    obj["description"] = ProductData.des.value;
+
+    obj["rating"] = ProductData.rating.value;
+
+    if (
+      obj["name"] == "" ||
+      obj["image"] == "" ||
+      obj["price"] == "" ||
+      obj["price"] == "" ||
+      obj["description"] == "" ||
+      obj["rating"] == ""
+    ) {
+      alert("Fill all detail");
+    } else {
+      const token = localStorage.getItem("token");
+
+      fetch("https://myshop-backend-u9km.onrender.com/admintask/add", {
+        method: "POST",
+        body: JSON.stringify(obj),
+        headers: {
+          "Content-type": "application/json",
+          Authorization: token,
+        },
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          //console.log(data)
+          alert("Item has been added");
+          location.reload();
+          //window.location.href="show.html"
+        })
+        .catch((error) => {
+          console.log(error);
+          alert(error);
         });
     }
+    document.getElementById("myForm").style.display = "none";
+    document.querySelector(".open-button").style.display = "block";
+    
+  }
 
+  function editData(element) {
+    //console.log(element)
+    document.getElementById("editForm").style.display = "block";
 
-    function DeleteNote(noteId) {
-        //console.log(noteId)
-        event.preventDefault()
-        fetch(`https://wandering-pig-snaps.cyclic.app/admintask/delete/${noteId}`, {
-            method: "DELETE",
-            headers: {
-                "Authorization": localStorage.getItem("token")
-            }
-        }).then((res) => { return (res.json()) }).then((data) => {
-            location.reload();
-        }).catch((err) => {
-            console.log(err);
-        })
-    }
+    document.getElementById("product-div").style.display = "none";
+    document.querySelector(".buttons").style.display = "none";
+    let editform = document.querySelector(".edit-form-container");
+    editform.name.value = element.name;
+    editform.image.value = element.image;
+    editform.price.value = element.price;
+    editform.des.value = element.description;
+    editform.rating.value = element.rating;
+    let update = document.querySelector("#editForm #update");
+    update.addEventListener("click", () => {
+      let editedData = document.querySelector(".edit-form-container");
+      console.log("data is updated");
+      event.preventDefault();
+      let obj = {};
+      obj["name"] = editedData.name.value;
+      obj["image"] = editedData.image.value;
+      obj["price"] = editedData.price.value;
+      obj["description"] = editedData.des.value;
 
-
-
-
-
-    // ------add product-----
-
-
-    function openForm() {
-        document.getElementById("myForm").style.display = "block";
-        document.getElementById("product-div").style.display = "none"
-        document.querySelector(".buttons").style.display = "none";
-    }
-    let modal = document.getElementById("myForm");
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+      obj["rating"] = editedData.rating.value;
+      console.log(element._id);
+      fetch(
+        `https://myshop-backend-u9km.onrender.com/admintask/update/${element._id}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(obj),
+          headers: {
+            "Content-type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
         }
-    }
-
-    function closeForm(event) {
-
-        let ProductData = document.querySelector("form");
-        let obj = {};
-
-        obj["name"] = ProductData.name.value;
-        obj["image"] = ProductData.image.value;
-        obj["price"] = ProductData.price.value;
-        obj["description"] = ProductData.des.value;
-
-        obj["rating"] = ProductData.rating.value;
-
-
-        if (obj["name"] == "" || obj["image"] == "" || obj["price"] == "" || obj["price"] == "" ||
-            obj["description"] == "" || obj["rating"] == "") {
-            alert("Fill all detail")
-        } else {
-
-            fetch("https://wandering-pig-snaps.cyclic.app/admintask/add", {
-                method: "POST",
-                body: JSON.stringify(obj),
-                headers: {
-                    "Content-type": "application/json",
-                    "Authorization": localStorage.getItem("token")
-                }
-            }).then((res) => { return (res.json()) }).then((data) => {
-                //console.log(data)
-                alert("Item has been added");
-                //window.location.href="show.html"
-            })
-                .catch((error) => {
-                    alert("Failed")
-                    console.log(error)
-                })
-
-
-        }
-        document.getElementById("myForm").style.display = "none";
-        document.querySelector(".open-button").style.display = "block";
-        location.reload();
-    }
-
-    function editData(element) {
-        //console.log(element)
-        document.getElementById("editForm").style.display = "block";
-
-        document.getElementById("product-div").style.display = "none";
-        document.querySelector(".buttons").style.display = "none";
-        let editform = document.querySelector(".edit-form-container");
-        editform.name.value = element.name;
-        editform.image.value = element.image;
-        editform.price.value = element.price;
-        editform.des.value = element.description;
-        editform.rating.value = element.rating;
-        let update = document.querySelector("#editForm #update");
-        update.addEventListener("click", () => {
-            let editedData = document.querySelector(".edit-form-container");
-            console.log("data is updated")
-            event.preventDefault()
-            let obj = {};
-            obj["name"] = editedData.name.value;
-            obj["image"] = editedData.image.value;
-            obj["price"] = editedData.price.value;
-            obj["description"] = editedData.des.value;
-
-            obj["rating"] = editedData.rating.value;
-            console.log(element._id)
-            fetch(`https://wandering-pig-snaps.cyclic.app/admintask/update/${element._id}`, {
-                method: "PATCH",
-                body: JSON.stringify(obj),
-                headers: {
-                    "Content-type": "application/json",
-                    "Authorization": localStorage.getItem("token")
-                }
-            }).then((res) => { return (res.json()) }).then((data) => {
-                location.reload();
-            }).catch((err) => {
-                console.log(err);
-            })
-
+      )
+        .then((res) => {
+          return res.json();
         })
-    }
-
-
+        .then((data) => {
+          location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  }
 </script>
