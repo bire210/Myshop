@@ -1,5 +1,9 @@
+/* CSS - register.css */
 body {
     background: linear-gradient(to right, rgb(159, 135, 135), rgb(169, 232, 215), rgb(161, 127, 164));
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 form {
@@ -8,39 +12,48 @@ form {
     width: 32%;
     border-radius: 20px;
     margin: auto;
-    padding: 15px;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding: 15px 25px;
     margin-top: 30px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-h2,
-p,
-h4,
 h1 {
     text-align: center;
+    font-size: 2em;
 }
 
-input,select {
+input, select {
     width: 95%;
     border-radius: 5px;
-    margin-top: 6px;
-    margin-bottom: 6px;
+    margin: 6px 0;
     border: 1px solid rgba(167, 153, 153, 0.619);
     font-size: 15px;
     padding: 6px;
-
-
 }
 
 .button {
-    /* position: relative; */
     margin-bottom: 20px;
     border-radius: 50px;
     background-color: black;
     color: white;
     border: 0px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);
+}
+
+.outer {
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+.container label {
+    font-size: 25px;
 }
 
 ::placeholder {
@@ -48,37 +61,49 @@ input,select {
     font-size: 20px;
 }
 
+/* Responsive styling */
+@media (max-width: 768px) {
+    form {
+        width: 80%;
+    }
 
-.outer {
-    border-radius: 50px;
-    text-align: center;
-    width: 50%;
-    margin-left: 25%;
+    h1 {
+        font-size: 1.5em;
+    }
 
+    .container label {
+        font-size: 20px;
+    }
+
+    input, select {
+        font-size: 14px;
+    }
+
+    .button {
+        font-size: 14px;
+        padding: 8px;
+    }
 }
 
-.outer:hover {
-    margin-left: 25%;
-    background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);
-    border-radius: 50px;
-    text-align: center;
-    width: 50%;
-    animation: rotate 1.5s linear infinite;
-}
+@media (max-width: 480px) {
+    form {
+        width: 95%;
+    }
 
-.container label {
-    font-size: 25px;
-}
-#reg-span{
-    font-size: 20px;
-    background-origin: padding-box;
-}
-#register{
-    margin-top: 20px;
-    text-decoration: none;
-    font-size: 20px;
-    border: 1px solid gray;
-    padding: 5px;
-    background-color: aqua;
-    border-radius: 20px;
+    h1 {
+        font-size: 1.2em;
+    }
+
+    .container label {
+        font-size: 18px;
+    }
+
+    input, select {
+        font-size: 13px;
+    }
+
+    .button {
+        font-size: 12px;
+        padding: 6px;
+    }
 }

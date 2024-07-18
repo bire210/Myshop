@@ -32,7 +32,6 @@
                     <h5><a href="#"> CliQ cares</a></h5>
                     <h5><a href="#">Track oders</a></h5>
                     <div class="dropdown">
-
                         <h5 id="click"><a class="dropbtn" href="#">Sign in /Sign Up</a></h5>
                         <div class="dropdown-content">
                             <button id="loginregister">Login/Register</button>
@@ -506,7 +505,8 @@
 
 <script>
     let username = localStorage.getItem("username");
-    if (username != "") {
+    console.log(username,"****************************");
+    if (username) {
         let tar = document.querySelector("#click .dropbtn").innerText = username;
         let reg = document.querySelector("#loginregister");
         reg.innerText = "Log Out";
@@ -516,7 +516,7 @@
             window.location.href="home.html"
         })
 
-        console.log(reg)
+        console.log("***************************************",reg)
     } else {
         let reg= document.querySelector("#loginregister");
         reg.addEventListener("click",()=>{
